@@ -1,10 +1,13 @@
 const express = require("express");
+const path = require("path");
 
 const app = express();
 
+// Setup static and middleware
+app.use(express.static("./public"));
+
 app.get("/", (req, res) => {
-  console.log("User hit the server!");
-  res.status(200).send("Home page");
+  res.sendFile(path.resolve(__dirname, "./navbar-app/index.html"));
 });
 
 app.get("/about", (req, res) => {
