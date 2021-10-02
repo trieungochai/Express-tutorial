@@ -16,6 +16,19 @@ app.get("/api/products", (req, res) => {
   res.json(newProducts);
 });
 
+app.get("/api/products/:productId", (req, res) => {
+  const { productId } = req.params;
+  const singleProduct = products.find(
+    (product) => product.id === Number(productId)
+  );
+
+  if (!singleProduct) {
+    return res.status(404).send("Product does not exist!");
+  } else {
+    return res.json(singleProduct);
+  }
+});
+
 app.listen(3000, () => {
   console.log("Server is running on port 3000!");
 });
